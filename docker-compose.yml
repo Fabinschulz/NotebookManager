@@ -1,0 +1,16 @@
+
+services:
+  project:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        CUSTOM_USER: ${CUSTOM_USER}
+        PROJECT_DIR: ${PROJECT_DIR}
+    image: ${CUSTOM_USER}/${PROJECT_DIR}:latest
+    env_file:
+      - .env    
+    volumes:
+      - .:/home/${CUSTOM_USER}/${PROJECT_DIR}
+    ports:
+      - "3000:3000"
